@@ -1,1 +1,1 @@
-# EventDrivenColorChooser
+# event-driven-color-chooser
