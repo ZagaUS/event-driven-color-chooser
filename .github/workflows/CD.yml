@@ -20,7 +20,7 @@ jobs:
     - name: Install prerequisites
       run: |
         pip install -r ./requirements.txt -r ./requirements-dev.txt
-        npm install -g --only=dev
+        npm install -g
         serverless --version
         which serverless
 
