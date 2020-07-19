@@ -1,0 +1,9 @@
+{
+    "name": "event-driven-color-chooser",
+    "description": "",
+    "version": "0.1.0",
+    "dependencies": {},
+    "devDependencies": {
+        "serverless": "1.61.3"
+    }
+}
