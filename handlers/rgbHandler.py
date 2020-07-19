@@ -1,7 +1,7 @@
 import json
 
 
-def rgb(event, context):
+def getRgb(event, context):
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event
