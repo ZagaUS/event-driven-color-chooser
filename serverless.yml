@@ -59,6 +59,7 @@ package:
    - package-lock.json
    - pytest.ini
    - tests/**
+   - node_modules/**
 
 functions:
   rgb:
