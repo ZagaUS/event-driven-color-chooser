@@ -22,7 +22,13 @@ service: event-driven-color-chooser
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.7
+  stage: ${opt:stage, 'develop'}
+  environment:
+    REDIS_HOST:
+      "Fn::GetAtt": [ElasticCacheCluster, RedisEndpoint.Address]
+    REDIS_PORT:
+      "Fn::GetAtt": [ElasticCacheCluster, RedisEndpoint.Port]
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -54,16 +60,28 @@ provider:
 #    - exclude-me-dir/**
 
 package:
- exclude:
-   - package.json
-   - package-lock.json
-   - pytest.ini
-   - tests/**
-   - node_modules/**
+  individually: true
+  exclude:
+    - package.json
+    - package-lock.json
+    - pytest.ini
+    - tests/**
+    - node_modules/**
+    - resources/**
+    - src/**/test_*.py
+
+plugins:
+  - serverless-python-requirements
 
 functions:
   rgb:
-    handler: handlers/rgbHandler.getRgb
+    handler: rgbHandler.getRgb
+    module: src
+    vpc:
+      securityGroupIds:
+        - "Fn::GetAtt": ServerlessSecurityGroup.GroupId
+      subnetIds:
+        - Ref: PrivateSubnetA
     events:
       - http:
           path: rgb
@@ -109,14 +127,11 @@ functions:
 #    environment:
 #      variable2: value2
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  - ${file(resources/redis.yml)}
+
+custom:
+  config:
+    CACHE_INSTANCE_SIZE: cache.t2.micro
+  pythonRequirements:
+    invalidateCaches: true

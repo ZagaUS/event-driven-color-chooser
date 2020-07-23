@@ -26,7 +26,7 @@ jobs:
       id: extract_branch
 
     - name: Install prerequisites
-      run: pip install -r ./requirements.txt -r ./requirements-dev.txt
+      run: pip install -r ./src/requirements.txt -r ./src/requirements-dev.txt
 
     - name: Perform regression testing
       run: python -m pytest
