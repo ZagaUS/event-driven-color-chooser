@@ -2,20 +2,19 @@ import json
 
 from lib.color_tally.color_tally import ColorTally
 
-def getRgb(event, context):
-    
-    print('event')
-    print(json.dumps(event))
+def rgb(event, context):
+    payload = json.load(event.body)
+    print(f'COLOR: {payload.color}')
     
     tally = ColorTally()
-    tally.tally('r')
-    body = tally.getTally()
-    
-    print(f'BODY: {body}')
+    tally.tally(payload.color)
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
+    return {
+        "statusCode": 200
     }
 
-    return response
+def votes(event, context):
+    return {
+        "statusCode": 200,
+        "body": json.dumps(ColorTally().getTally())
+    }

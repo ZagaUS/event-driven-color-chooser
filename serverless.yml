@@ -75,7 +75,7 @@ plugins:
 
 functions:
   rgb:
-    handler: rgbHandler.getRgb
+    handler: rgbHandler.rgb
     module: src
     vpc:
       securityGroupIds:
@@ -85,6 +85,19 @@ functions:
     events:
       - http:
           path: rgb
+          method: post
+  
+  votes:
+    handler: rgbHandler.votes
+    module: src
+    vpc:
+      securityGroupIds:
+        - "Fn::GetAtt": ServerlessSecurityGroup.GroupId
+      subnetIds:
+        - Ref: PrivateSubnetA
+    events:
+      - http:
+          path: votes
           method: get
     
 #    The following are a few example events you can configure
