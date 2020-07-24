@@ -1,0 +1,29 @@
+<!--ion-header [translucent]="true"-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     Vote your color  
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--ion-content [fullscreen]="true"-->
+<ion-content padding>
+
+
+  
+  
+
+<div class="blue-square-container">
+
+
+  <ion-list>
+  <ion-button  (click)="changeColors('r')" color="danger">Red</ion-button>
+  <ion-button  (click)="changeColors('b')" >Blue</ion-button>
+  <ion-button  (click)="changeColors('g')" color="success">Green</ion-button>
+
+  </ion-list>
+  <div class="my-square" [style.background-color]="clr" >test</div>
+ 
+</div>
+</ion-content>
