@@ -99,6 +99,32 @@ functions:
       - http:
           path: votes
           method: get
+  
+  socketConnect:
+    handler: socketApi.connect
+    module: src
+    events:
+      - websocket:
+          routeKey: $connect
+  
+  socketDisconnect:
+    handler: socketApi.disconnect
+    module: src
+    events:
+      - websocket:
+          routeKey: $disconnect
+  
+  defaultMessages:
+    handler: socketApi.defaultMessage
+    events:
+      - websocket:
+          routeKey: $default
+  
+  vote:
+    handler: socketApi.vote
+    events:
+      - websocket:
+          routeKey: vote
     
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

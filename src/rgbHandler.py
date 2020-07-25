@@ -1,6 +1,10 @@
 import json
+import logging
 
 from lib.color_tally.color_tally import ColorTally
+
+logger = logging.getLogger("rgb_logger")
+logger.setLevel(logging.DEBUG)
 
 def rgb(event, context):
     responseCode = 200
@@ -8,6 +12,7 @@ def rgb(event, context):
         payload = json.loads(event['body'])
         ColorTally().tally(payload['color'])
     except ValueError:
+        logger.error(f"invalid color specified {payload['color']}")
         responseCode = 400
     
     return {
