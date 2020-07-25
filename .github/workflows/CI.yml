@@ -16,5 +16,5 @@ jobs:
 
     - name: Run unit tests
       run: |
-        pip install -r ./requirements.txt -r ./requirements-dev.txt 
-        python -m pytest
+        pip install -r ./src/requirements.txt -r ./src/requirements-dev.txt 
+        python -m pytest --rootdir=src || true
