@@ -3,11 +3,15 @@ import json
 from lib.color_tally.color_tally import ColorTally
 
 def rgb(event, context):
-    payload = json.loads(event['body'])
-    ColorTally().tally(payload['color'])
-
+    responseCode = 200
+    try:
+        payload = json.loads(event['body'])
+        ColorTally().tally(payload['color'])
+    except ValueError:
+        responseCode = 400
+    
     return {
-        "statusCode": 200
+        "statusCode": responseCode
     }
 
 def votes(event, context):
