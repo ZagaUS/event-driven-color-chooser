@@ -11,7 +11,7 @@ class Color(Enum):
 
 class ColorTally:
     
-    def __init__(self, weight = 1, timeout = 10, maximum = 255, baselineColor = 85):
+    def __init__(self, weight = 1, timeout = 30, maximum = 255, baselineColor = 85):
         self.voteWeight     = weight
         self.timeoutSeconds = timeout
         self.maximum        = maximum
@@ -28,12 +28,12 @@ class ColorTally:
             Color.g.name: self._countVotes(Color.g),
             Color.b.name: self._countVotes(Color.b)
         }
-        totals['hex'] = calculateHex(totals)
+        totals['hex'] = self.calculateHex(totals)
         return totals 
     
     def calculateHex(self, totals):
         hash     = {}
-        maxVotes = max(totals.values())
+        maxVotes = max(list(totals.values()) + [1])
 
         for item in totals.items():
             bounds        = self.maximum - self.baselineColor
