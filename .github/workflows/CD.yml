@@ -30,6 +30,14 @@ jobs:
 
     - name: Perform regression testing
       run: python -m pytest
+
+    - name: serverless deploy
+      uses: serverless/github-action@master
+      with:
+        args: create_domain --stage ${{ steps.extract_branch.outputs.branch }}
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
     - name: serverless deploy
       uses: serverless/github-action@master
