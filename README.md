@@ -55,5 +55,5 @@ Everything deploys on AWS, but a quick rundown of the internals is as follows:
     - State is managed via [ElastiCache](https://aws.amazon.com/elasticache/) / [Redis](https://redis.io/)
     - [Lambda](https://aws.amazon.com/lambda/) facilitates computation.
     - [API Gateway](https://aws.amazon.com/api-gateway/) facilitates API management.
-    - [S3] serves static resources
+    - [S3](https://aws.amazon.com/s3/) serves static resources
 - [Github actions](https://docs.github.com/en/actions) are used for CI / CD
