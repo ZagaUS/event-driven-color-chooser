@@ -1,7 +1,7 @@
 import json
 import logging
 
-from lib.color_tally.color_tally import ColorTally
+from modules.color_tally import ColorTally
 
 logger = logging.getLogger("rgb_logger")
 logger.setLevel(logging.DEBUG)
