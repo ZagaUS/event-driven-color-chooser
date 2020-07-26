@@ -1,3 +1,5 @@
+![CI](https://github.com/ZagaUS/event-driven-color-chooser/workflows/CI/badge.svg)
+
 # event-driven-color-chooser
 The Event Driven Color Chooser is a sample application that demonstrates the usage of AWS to support a real-time event-driven use case. Clients may navigate to the home page and "vote" for the color of their preference. Options are Red, Green or Blue. As clients make their respective selections the API will tally votes; perform rudimentary processing on the "voting" events; then respond to inquiries from the client as to vote totals. Votes are given a limited time to live (TTL), so tallied votes only count for a limited duration.
 
