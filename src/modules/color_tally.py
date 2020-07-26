@@ -17,8 +17,8 @@ class ColorTally:
         self.maximum        = maximum
         self.baselineColor  = baselineColor
         
-        redisHost  = os.environ.get('REDIS_HOST')
-        redisPort  = os.environ.get('REDIS_PORT')
+        redisHost  = os.environ['REDIS_HOST']
+        redisPort  = os.environ['REDIS_PORT']
         redisUrl   = f'redis://{redisHost}:{redisPort}'
         self.cache = redis.Redis.from_url(redisUrl)
 
