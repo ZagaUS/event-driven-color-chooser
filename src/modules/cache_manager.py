@@ -38,4 +38,5 @@ class ConnectionCache(CacheManager):
         self.cache.delete(key)
     
     def getConnections(self):
-        return self.cache.mget('connection:*')
+        keys = self.cache.keys('connection:*')
+        return self.cache.mget(*keys)

@@ -41,11 +41,19 @@ def vote(event, context):
         }
     
     apiClient.send(event['requestContext']['connectionId'], response)
+    _spamUpdates()
     return success
 
 def inquire(event, context):
     apiClient.send(event['requestContext']['connectionId'], {
-      'event': 'success',
-      'body': json.dumps(ColorTally().getTally())
+        'event': 'success',
+        'body': json.dumps(ColorTally().getTally())
     })
     return success
+
+def _spamUpdates():
+    for connectionId in cache.getConnections():
+        apiClient.send(connectionId.decode("utf-8"), {
+            'event': 'success',
+            'body': json.dumps(ColorTally().getTally())
+        })
