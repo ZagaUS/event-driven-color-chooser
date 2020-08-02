@@ -32,6 +32,7 @@ package:
     - pytest.ini
     - tests/**
     - node_modules/**
+    - frontend/**
     - resources/**
     - src/**/test_*.py
 
