@@ -53,7 +53,4 @@ def inquire(event, context):
 
 def _spamUpdates():
     for connectionId in cache.getConnections():
-        apiClient.send(connectionId.decode("utf-8"), {
-            'event': 'success',
-            'body': json.dumps(ColorTally().getTally())
-        })
+        apiClient.send(connectionId.decode("utf-8"), ColorTally().getTally())
